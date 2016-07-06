@@ -5,9 +5,7 @@ INITFILE="/init.rc"
 if [ "$(cat /init.rc | grep BOOTCLASSPATH)" = "" ]; then
 	INITFILE="/init.environ.rc"
 fi
-
 `cat $INITFILE | grep BOOTCLASSPATH | sed 's/BOOTCLASSPATH /BOOTCLASSPATH=/g'`
 
-# wake up android
-PATH=/system/bin:$PATH LD_LIBRARY_PATH=/system/lib:/vendor/lib /system/bin/input keyevent 224
+PATH=/system/bin:$PATH LD_LIBRARY_PATH=/system/lib:/vendor/lib /system/bin/am $@
 
